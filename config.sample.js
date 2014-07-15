@@ -1,5 +1,7 @@
 module.exports = {
 
-    // Config
+    mongo: {
+        url: 'mongodb://localhost/trackly'
+    }
 
 };

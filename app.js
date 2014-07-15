@@ -7,9 +7,13 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , config = require('./config')
+  , mongoose = require('mongoose');
 
 var app = express();
+
+mongoose.connect(config.mongo.url);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
