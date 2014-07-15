@@ -15,5 +15,8 @@
     "morgan": "^1.1.1",
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
   }
 }
