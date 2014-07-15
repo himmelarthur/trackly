@@ -1,5 +1,10 @@
 extends layout
 
+block css
+  link(rel='stylesheet', href='/stylesheets/login.css')
+
 block content
-  h1= Login
-  a(href="/auth/facebook") Login With Facebook
+  .big-image
+  .login
+    h1.title= "Trackly"
+    a.facebook-connect(href="/auth/facebook") Login With Facebook
