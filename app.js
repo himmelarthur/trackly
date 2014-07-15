@@ -32,6 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
 
+app.locals.prod = ('production' === app.get('env'));
+
 // development only
 if ('development' == app.get('env')) {
   app.use(errorHandler());

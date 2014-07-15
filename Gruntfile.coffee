@@ -13,6 +13,8 @@ module.exports = (grunt) ->
       css:
         files: ['assets/sass/**/*']
         tasks: ['compass']
+      options:
+        livereload: true
 
   grunt.loadNpmTasks('grunt-contrib-compass')
   grunt.loadNpmTasks('grunt-contrib-watch')
