@@ -28,6 +28,7 @@
   "browser": {
     "backbone": "./bower_components/backbone/backbone.js",
     "jquery": "./bower_components/jquery/dist/jquery.js",
+    "marionette": "./bower_components/marionette/lib/backbone.marionette.js",
     "underscore": "./bower_components/underscore/underscore.js"
   },
   "browserify-shim": {
