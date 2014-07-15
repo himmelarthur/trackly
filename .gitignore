@@ -2,4 +2,5 @@
 node_modules
 config.js
 public/stylesheets
+public/javascripts
 bower_components
