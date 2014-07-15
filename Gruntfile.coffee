@@ -6,7 +6,7 @@ module.exports = (grunt) ->
     compass:
       dist:
         options:
-          sassDir: 'assets/sass'
+          sassDir: 'assets/sass/pages'
           cssDir: 'public/stylesheets'
 
     watch:
