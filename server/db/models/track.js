@@ -8,7 +8,7 @@ var trackSchema = new Schema({
     provider: String
 });
 
-userSchema.index({
+trackSchema.index({
     userId: 1
 });
 

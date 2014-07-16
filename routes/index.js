@@ -5,7 +5,7 @@
 
 exports.index = function (req, res) {
     if (req.user) {
-        res.render('index', {name: req.user.name});
+        res.render('index');
     } else {
         res.redirect('/login');
     }

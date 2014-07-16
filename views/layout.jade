@@ -5,6 +5,8 @@ html
     block css
   body
     block content
+  script.
+    window.expose = !{JSON.stringify(expose)}
   block js
   if (!prod)
     script(src="//localhost:35729/livereload.js")

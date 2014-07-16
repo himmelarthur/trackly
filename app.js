@@ -7,6 +7,7 @@ var express = require('express')
   , session = require('express-session')
   , morgan = require('morgan')
   , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
   , errorHandler = require('errorhandler')
   , http = require('http')
   , path = require('path')
@@ -23,6 +24,8 @@ app.set('view engine', 'jade');
 app.use(morgan());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser(config.cookie.secret));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(session({
     secret: config.session.secret,
     resave: true,
@@ -30,9 +33,17 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(router);
 
-app.locals.prod = ('production' === app.get('env'));
+app.use(function (req, res, next) {
+  app.locals.expose = {};
+  if (req.user) {
+    app.locals.expose.uid = req.user._id;
+  }
+  app.locals.prod = ('production' === app.get('env'));
+  next();
+});
+
+app.use(router);
 
 // development only
 if ('development' == app.get('env')) {
