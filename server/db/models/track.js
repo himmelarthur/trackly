@@ -23,8 +23,8 @@ trackSchema.index({
 var Track = mongoose.model('Track', trackSchema);
 
 Track.build = function (url, cb) {
-    var youtubeId;
-    var parsedUrl = urllib.parse(url, true);
+    var youtubeId,
+        parsedUrl = urllib.parse(url, true);
     if (parsedUrl.host.indexOf('youtube') > -1) {
         youtubeId = parsedUrl.query.v;
     } else if (parsedUrl.host.indexOf('youtu.be') > -1) {

@@ -1,8 +1,10 @@
 var express = require('express'),
-    routes = require('./routes'),
-    passport = require('./server/auth/passport');
+    routes = require('../routes/index'),
+    passport = require('./auth/passport');
 
-var Track = require('./server/db/models/track');
+var registerApi = require('./api');
+
+var Track = require('./db/models/track');
 
 var router = express.Router();
 
@@ -37,32 +39,8 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-// API
-router.get('/api/user/:user_id/tracks', function (req, res) {
-    Track.find({
-        userId: req.user_id
-    }, function (err, tracks) {
-        if (err) {
-            return res.send(err);
-        }
-        res.json(tracks);
-    });
-});
+registerApi(router);
 
-router.post('/api/user/:user_id/tracks', function (req, res) {
-    Track.build(req.body.url, function(err, data) {
-        if (err) {
-            throw new Error(err);
-        } else {
-            data['userId'] = req.params.user_id;
-            Track.create(data, function (err, track) {
-                if (err) {
-                    return res.send(err);
-                }
-                res.json(track);
-            });
-        }
-    });
-});
+// API
 
 module.exports = router;

@@ -13,7 +13,7 @@ var express = require('express')
   , path = require('path')
   , passport = require('./server/auth/passport')
   , config = require('./config')
-  , router = require('./router');
+  , router = require('./server/router');
 
 var app = express();
 
