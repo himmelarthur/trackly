@@ -14,8 +14,6 @@ module.exports = new FacebookStrategy({
         name: profile.displayName
     }, function (err, user) {
         if (err) {
-            console.log("err");
-            console.log(err);
             return done(err);
         }
         done(null, user);

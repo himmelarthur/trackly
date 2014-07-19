@@ -4,3 +4,7 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   modelEvents:
     change: 'render'
+
+  tagName: 'li'
+
+  className: 'track'

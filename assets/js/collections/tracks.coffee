@@ -5,4 +5,4 @@ module.exports = Backbone.Collection.extend
   model: Track
 
   url: ->
-    '/api/user/%uid%/tracks'.replace '%uid%', global.expose.uid
+    '/api/user/%uid%/tracks'.replace '%uid%', global.expose.user._id

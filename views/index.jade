@@ -1,7 +1,16 @@
 extends layout
 
+block css
+  link(rel='stylesheet', href='/stylesheets/home.css')
+
 block content
-  #form
+  .header
+    h2 Trackly
+    .profile.table
+      img(src="http://graph.facebook.com/" + expose.user.uid + "/picture?width=100&height=100", alt="")
+      span.user-name= expose.user.name
+      a(href="/logout") Logout
+  #form.form
   #list
 
 block js

@@ -10,7 +10,7 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     if (req.user) {
         res.locals.expose = {};
-        res.locals.expose.uid = req.user._id;
+        res.locals.expose.user = req.user;
         Track.getTracksForUserId(req.user._id, function (err, data) {
             if (err) {
                 res.send(err);
@@ -32,6 +32,10 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/',
     failureRedirect: '/'
 }));
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 // API
 router.get('/api/user/:user_id/tracks', function (req, res) {

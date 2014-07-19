@@ -2,6 +2,8 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   template: require '../templates/url_form.jade'
 
+  className: 'url-input'
+
   ui:
     input: 'input'
     button: 'button'
