@@ -8,9 +8,23 @@ user = new User
   _id: global.expose.uid
 
 Tracks = require '../collections/tracks.coffee'
-window.tracks = new Tracks([])
+tracks = new Tracks(expose.tracks)
+
+Form = require '../views/url_form.coffee'
+List = require '../views/list.coffee'
+form = new Form
+  collection: tracks
+list = new List
+  collection: tracks
 
 Trackly = new Marionette.Application()
+Trackly.addRegions
+  form: '#form'
+  list: '#list'
 
-Trackly.start()
+Trackly.addInitializer (opts) ->
+  Trackly.form.show form
+  Trackly.list.show list
 
+$ ->
+  Trackly.start()

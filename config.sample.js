@@ -8,6 +8,9 @@ module.exports = {
         appSecret: '',
         callbackURL: ''
     },
+    youtube: {
+        secretKey: ''
+    },
     session: {
         secret: ''
     },

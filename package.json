@@ -13,10 +13,12 @@
     "express": "~4.6.1",
     "express-session": "^1.6.5",
     "jade": "*",
+    "jadeify": "^2.4.0",
     "mongoose": "^3.8.13",
     "morgan": "^1.1.1",
     "passport": "^0.2.0",
-    "passport-facebook": "^1.0.3"
+    "passport-facebook": "^1.0.3",
+    "youtube-api": "^0.2.2"
   },
   "devDependencies": {
     "browserify-shim": "^3.6.0",
@@ -41,7 +43,8 @@
   "browserify": {
     "transform": [
       "browserify-shim",
-      "coffeeify"
+      "coffeeify",
+      "jadeify"
     ]
   }
 }
