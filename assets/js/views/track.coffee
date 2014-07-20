@@ -13,7 +13,7 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   tagName: 'li'
 
-  className: 'track'
+  className: 'track table'
 
   removeModel: ->
     @model.destroy()
