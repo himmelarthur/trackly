@@ -4,14 +4,18 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   className: 'url-input'
 
+  tagName: 'form'
+
   ui:
     input: 'input'
     button: 'button'
 
   events:
-    'click @ui.button': 'submit'
+    'submit': 'submit'
 
   submit: (evt) ->
+    evt.preventDefault()
+    evt.stopPropagation()
     url = @ui.input.val()
     @createModel url
 
