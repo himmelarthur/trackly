@@ -11,13 +11,19 @@ var Schema = mongoose.Schema;
 
 var trackSchema = new Schema({
     userId: {type: String, index: true},
+    providerId: {type: String, index: true},
+    provider: {type: String, index: true},
     name: String,
     url: String,
-    provider: String
 });
 
 trackSchema.index({
     userId: 1
+}).index({
+    provider: 1,
+    providerId: 1
+}, {
+    unique: true
 });
 
 var Track = mongoose.model('Track', trackSchema);
@@ -43,7 +49,8 @@ Track.build = function (url, cb) {
         cb(null, {
             name: result.snippet.title,
             url: url,
-            provider: 'youtube'
+            provider: 'youtube',
+            providerId: youtubeId
         });
     });
 };

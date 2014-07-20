@@ -18,3 +18,4 @@ module.exports = Backbone.Marionette.ItemView.extend
   createModel: (url) ->
     @collection.create
       url: url
+    , wait: true

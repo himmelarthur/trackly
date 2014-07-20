@@ -17,3 +17,8 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   removeModel: ->
     @model.destroy()
+
+  serializeData: ->
+    iconClass = if @model.get('provider') is 'youtube' then 'fa-youtube-play' else 'fa-soundcloud'
+    _.extend @model.toJSON(),
+      iconClass: iconClass

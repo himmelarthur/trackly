@@ -7,7 +7,7 @@ exports.tracks = {
             userId: req.user_id
         }, function (err, tracks) {
             if (err) {
-                return res.send(err);
+                return res.send(500, err);
             }
             res.json(tracks);
         });
@@ -21,7 +21,7 @@ exports.tracks = {
                 data.userId = req.params.user_id;
                 Track.create(data, function (err, track) {
                     if (err) {
-                        return res.send(err);
+                        return res.send(500, err);
                     }
                     res.json(track);
                 });
@@ -32,7 +32,7 @@ exports.tracks = {
     delete: function (req, res) {
         Track.findById(req.params.track_id, function (err, track) {
             if (err) {
-                return res.send(err);
+                return res.send(500, err);
             }
             track.remove();
             res.send(200);
