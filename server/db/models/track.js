@@ -1,11 +1,8 @@
 var urllib = require('url');
-var mongoose = require('../connection');
-var youtube = require('youtube-api');
-var config = require('../../../config');
+var request = require('request');
 
-youtube.authenticate({
-    'type':'key', key:config.youtube.secretKey
-});
+var mongoose = require('../connection');
+var config = require('../../../config');
 
 var Schema = mongoose.Schema;
 
@@ -29,17 +26,23 @@ trackSchema.index({
 var Track = mongoose.model('Track', trackSchema);
 
 Track.build = function (url, cb) {
-    var youtubeId,
-        parsedUrl = urllib.parse(url, true);
+    var parsedUrl = urllib.parse(url, true);
     if (parsedUrl.host.indexOf('youtube') > -1) {
-        youtubeId = parsedUrl.query.v;
+        this.buildYoutube(url, parsedUrl.query.v, cb);
     } else if (parsedUrl.host.indexOf('youtu.be') > -1) {
-        youtubeId = parsedUrl.pathname.slice(1);
-    } else {
-        return cb('Bad Provider', null);
+        this.buildYoutube(url, parsedUrl.pathname.slice(1), cb);
+    } else if (parsedUrl.host.indexOf('soundcloud') > -1) {
+        this.buildSoundcloud(url, cb);
     }
+};
+
+Track.buildYoutube = function (url, id, cb) {
+    var youtube = require('youtube-api');
+    youtube.authenticate({
+        'type':'key', key:config.youtube.secretKey
+    });
     youtube.videos.list({
-        id: youtubeId,
+        id: id,
         part: 'snippet'
     }, function (err, data) {
         if (err) {
@@ -50,7 +53,31 @@ Track.build = function (url, cb) {
             name: result.snippet.title,
             url: url,
             provider: 'youtube',
-            providerId: youtubeId
+            providerId: id
+        });
+    });
+};
+
+Track.buildSoundcloud = function (url, cb) {
+    var requestURL = urllib.format({
+        protocol: 'http:',
+        host: 'api.soundcloud.com',
+        pathname: 'resolve.json',
+        query: {
+            url: url,
+            client_id: config.soundcloud.clientID
+        }
+    });
+    request(requestURL, function (err, res, body) {
+        if (err) {
+            return cb(err, null);
+        }
+        body = JSON.parse(body);
+        cb(null, {
+            name: body.title,
+            url: url,
+            provider: 'soundcloud',
+            providerId: body.id
         });
     });
 };

@@ -11,6 +11,9 @@ module.exports = {
     youtube: {
         secretKey: ''
     },
+    soundcloud: {
+        clientID: ''
+    },
     session: {
         secret: ''
     },
