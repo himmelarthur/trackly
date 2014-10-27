@@ -2,7 +2,7 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   template: require '../templates/url_form.jade'
 
-  className: 'url-input'
+  className: 'url-input input-button'
 
   tagName: 'form'
 
@@ -24,3 +24,7 @@ module.exports = Backbone.Marionette.ItemView.extend
     @collection.create
       url: url
     , wait: true
+
+  onRender: ->
+    $('.js-add-track').click (evt) =>
+      @$el.slideToggle(200)
