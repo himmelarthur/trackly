@@ -12,6 +12,7 @@ var trackSchema = new Schema({
     provider: {type: String, index: true},
     name: String,
     url: String,
+    created: {type: Date, default: Date.now}
 });
 
 trackSchema.index({
