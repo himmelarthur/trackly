@@ -1,3 +1,5 @@
+moment = require 'moment'
+
 module.exports = Backbone.Marionette.ItemView.extend
 
   template: require '../templates/track.jade'
@@ -20,5 +22,10 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   serializeData: ->
     iconClass = if @model.get('provider') is 'youtube' then 'fa-youtube-play' else 'fa-soundcloud'
+    if @model.get "created"
+      created = moment(@model.get "created").fromNow()
+    else
+      created = null
     _.extend @model.toJSON(),
       iconClass: iconClass
+      created: created
