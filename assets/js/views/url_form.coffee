@@ -28,3 +28,4 @@ module.exports = Backbone.Marionette.ItemView.extend
   onRender: ->
     $('.js-add-track').click (evt) =>
       @$el.slideToggle(200)
+      @ui.input.focus()
