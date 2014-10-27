@@ -17,6 +17,7 @@ module.exports = Backbone.Marionette.ItemView.extend
     evt.preventDefault()
     evt.stopPropagation()
     url = @ui.input.val()
+    @ui.input.val("")
     @createModel url
 
   createModel: (url) ->
