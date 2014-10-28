@@ -1,36 +1,46 @@
+# Lib Dependencies
 window.$ = require('jquery')
 window._ = require('underscore')
 window.Backbone = require('backbone')
 Marionette = require('marionette')
 
+# Applications & Modules
 Router = require './router.coffee'
 Controller = require './controller.coffee'
+AddTrack = require '../modules/add_track.coffee'
 
-controller = new Controller()
-router = new Router
-  controller: controller
+Trackly = new Marionette.Application()
+Trackly.module('AddTrack', AddTrack);
 
+Trackly.addRegions
+    form: '#form'
+    list: '#list'
+
+# Models
 User = require '../models/user.coffee'
 user = new User
-  _id: global.expose.uid
+  _id: expose.user._id
 
+# Collections
 Tracks = require '../collections/tracks.coffee'
 tracks = new Tracks(expose.tracks)
 
-Form = require '../views/url_form.coffee'
+user.tracks = tracks
+
+# Views
 List = require '../views/list.coffee'
-form = new Form
-  collection: tracks
 list = new List
   collection: tracks
 
-Trackly = new Marionette.Application()
-Trackly.addRegions
-  form: '#form'
-  list: '#list'
+controller = new Controller
+  vent: Trackly.vent
+  models:
+    user: user
+router = new Router
+  controller: controller
 
 Trackly.addInitializer (opts) ->
-  Trackly.form.show form
+  Trackly.AddTrack.display(Trackly.form)
   Trackly.list.show list
 
 $ ->

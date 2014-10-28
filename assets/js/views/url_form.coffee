@@ -13,6 +13,9 @@ module.exports = Backbone.Marionette.ItemView.extend
   events:
     'submit': 'submit'
 
+  initialize: (opts) ->
+    @vent = opts.vent
+
   submit: (evt) ->
     evt.preventDefault()
     evt.stopPropagation()
@@ -21,9 +24,7 @@ module.exports = Backbone.Marionette.ItemView.extend
     @createModel url
 
   createModel: (url) ->
-    @collection.create
-      url: url
-    , wait: true
+    @vent.trigger 'track:post', url
 
   onRender: ->
     $('.js-add-track').click (evt) =>

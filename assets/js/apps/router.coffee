@@ -1,4 +1,4 @@
 module.exports = Backbone.Marionette.AppRouter.extend
 
   appRoutes:
-    "ly/:user_id": "user"
+    "ly/:user_id": "userRoute"
