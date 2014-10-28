@@ -3,6 +3,13 @@ window._ = require('underscore')
 window.Backbone = require('backbone')
 Marionette = require('marionette')
 
+Router = require './router.coffee'
+Controller = require './controller.coffee'
+
+controller = new Controller()
+router = new Router
+  controller: controller
+
 User = require '../models/user.coffee'
 user = new User
   _id: global.expose.uid
@@ -27,4 +34,5 @@ Trackly.addInitializer (opts) ->
   Trackly.list.show list
 
 $ ->
+  Backbone.history.start()
   Trackly.start()
