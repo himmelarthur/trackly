@@ -12,6 +12,7 @@ var trackSchema = new Schema({
     provider: {type: String, index: true},
     name: String,
     url: String,
+    imageUrl: String,
     created: {type: Date}
 });
 
@@ -50,11 +51,13 @@ Track.buildYoutube = function (url, id, cb) {
             throw new Error(err);
         }
         var result = data.items[0];
+        console.log(result.snippet)
         cb(null, {
             name: result.snippet.title,
             url: url,
             provider: 'youtube',
-            providerId: id
+            providerId: id,
+            imageUrl: result.snippet.thumbnails.default.url
         });
     });
 };

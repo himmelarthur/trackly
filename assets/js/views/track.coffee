@@ -21,11 +21,5 @@ module.exports = Backbone.Marionette.ItemView.extend
     @model.destroy()
 
   serializeData: ->
-    iconClass = if @model.get('provider') is 'youtube' then 'fa-youtube-play' else 'fa-soundcloud'
-    if @model.get "created"
-      created = moment(@model.get "created").fromNow()
-    else
-      created = null
     _.extend @model.toJSON(),
-      iconClass: iconClass
-      created: created
+      created: moment(@model.get "created").fromNow()
