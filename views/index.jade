@@ -4,14 +4,15 @@ block css
   link(rel='stylesheet', href='/stylesheets/home.css')
 
 block content
-  .header
-    .add-track.js-add-track
-      span.js-toggle-submit +
-    h2 Trackly
-    .profile.table
-      img(src="http://graph.facebook.com/" + expose.user.uid + "/picture?width=100&height=100", alt="")
-    #form.form
-  #list.track-list
+  .content
+    .header
+      .add-track.js-add-track.dn
+        span.js-toggle-submit +
+      h2 Trackly
+      .profile.table.dn
+        img(src="http://graph.facebook.com/" + expose.user.uid + "/picture?width=100&height=100", alt="")
+      #form.form
+    #list.track-list
 
 block js
   script(src="/javascripts/main.js")

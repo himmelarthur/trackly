@@ -2,5 +2,12 @@
 @import "../atoms/track"
 @import "../atoms/button"
 @import "../atoms/top_bar"
-@import "../molecules/tracklist"
 @import "../molecules/input-button"
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  .dn
+    display: none !important
+  .content
+    width: 100%
+  body
+    font-size: 1.8em
