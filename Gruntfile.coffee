@@ -28,3 +28,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-compass')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-browserify')
+
+  grunt.registerTask('default', ['browserify', 'compass'])
