@@ -25,8 +25,15 @@ module.exports = (grunt) ->
           debug: true
         files: 'public/javascripts/main.js': ['assets/js/apps/trackly.coffee']
 
-  grunt.loadNpmTasks('grunt-contrib-compass')
-  grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-browserify')
+    uglify:
+      dist:
+        sourceMap: on
+        files:
+          'public/javascripts/m.js': ['public/javascripts/main.js']
 
-  grunt.registerTask('default', ['browserify', 'compass'])
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.registerTask('default', ['browserify', 'compass', 'uglify']);
