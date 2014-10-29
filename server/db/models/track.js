@@ -77,11 +77,13 @@ Track.buildSoundcloud = function (url, cb) {
             return cb(err, null);
         }
         body = JSON.parse(body);
+        console.log(body);
         cb(null, {
             name: body.title,
             url: url,
             provider: 'soundcloud',
-            providerId: body.id
+            providerId: body.id,
+            imageUrl: body.artwork_url
         });
     });
 };
