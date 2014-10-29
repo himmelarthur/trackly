@@ -39,14 +39,14 @@ app.use(function (req, res, next) {
   if (req.user) {
     app.locals.expose.uid = req.user._id;
   }
-  app.locals.prod = ('production' === app.get('env'));
+  app.locals.prod = ('PROD' === config.env);
   next();
 });
 
 app.use(router);
 
 // development only
-if ('development' == app.get('env')) {
+if ('DEV' == config.env) {
   app.use(errorHandler());
 }
 
