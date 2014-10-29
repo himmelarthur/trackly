@@ -15,6 +15,7 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   initialize: (opts) ->
     @vent = opts.vent
+    @vent.on 'track:added', _.bind(@slideUp, @)
 
   submit: (evt) ->
     evt.preventDefault()
@@ -30,3 +31,6 @@ module.exports = Backbone.Marionette.ItemView.extend
     $('.js-add-track').click (evt) =>
       @$el.slideToggle(200)
       @ui.input.focus()
+
+  slideUp: ->
+    @$el.slideUp(200)
