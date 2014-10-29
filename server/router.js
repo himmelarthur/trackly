@@ -29,7 +29,7 @@ router.get('/', function (req, res, next) {
 router.get('/login', routes.login);
 
 // AUTH
-router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'publish_actions'}));
 router.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect: '/',
     failureRedirect: '/'
