@@ -6,11 +6,12 @@ block css
 block content
   .content
     .header
-      .add-track.js-add-track.dn
-        span.js-toggle-submit +
-      h2 Trackly
-      .profile.table.dn
-        img(src="http://graph.facebook.com/" + expose.user.uid + "/picture?width=100&height=100", alt="")
+      .header-top.table
+        .add-track.js-add-track.dn
+          span.js-toggle-submit +
+        h2 Trackly
+        .profile.table.dn
+          img(src="http://graph.facebook.com/" + expose.user.uid + "/picture?width=100&height=100", alt="")
       #form.form
     #list.track-list
 
