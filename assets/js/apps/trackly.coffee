@@ -3,11 +3,6 @@ window._ = require('underscore')
 window.Backbone = require('backbone')
 Marionette = require('marionette')
 
-Trackly = new Marionette.Application()
-
-Player = require './player.coffee'
-Trackly.module('Player', Player)
-
 User = require '../models/user.coffee'
 user = new User
   _id: global.expose.uid
@@ -21,21 +16,11 @@ form = new Form
   collection: tracks
 list = new List
   collection: tracks
-  vent: Trackly.vent
 
+Trackly = new Marionette.Application()
 Trackly.addRegions
   form: '#form'
   list: '#list'
-
-Trackly.addInitializer (opts) ->
-  window.SC.initialize
-    client_id: '0d5f0984aba3de0a9802dd84ad0e2627'
-    redirect_uri: '/auth/soundcloud/callback'
-
-Trackly.addInitializer (opts) ->
-  Trackly.vent.on 'track:play', (track) ->
-    Trackly.module('Player').play track
-
 
 Trackly.addInitializer (opts) ->
   Trackly.form.show form
