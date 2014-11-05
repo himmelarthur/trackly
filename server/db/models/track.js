@@ -12,6 +12,8 @@ var trackSchema = new Schema({
     provider: {type: String, index: true},
     name: String,
     url: String,
+    imageUrl: String,
+    created: {type: Date}
 });
 
 trackSchema.index({
@@ -49,11 +51,13 @@ Track.buildYoutube = function (url, id, cb) {
             throw new Error(err);
         }
         var result = data.items[0];
+        console.log(result.snippet)
         cb(null, {
             name: result.snippet.title,
             url: url,
             provider: 'youtube',
-            providerId: id
+            providerId: id,
+            imageUrl: result.snippet.thumbnails.default.url
         });
     });
 };
@@ -73,11 +77,13 @@ Track.buildSoundcloud = function (url, cb) {
             return cb(err, null);
         }
         body = JSON.parse(body);
+        console.log(body);
         cb(null, {
             name: body.title,
             url: url,
             provider: 'soundcloud',
-            providerId: body.id
+            providerId: body.id,
+            imageUrl: body.artwork_url
         });
     });
 };

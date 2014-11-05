@@ -1,4 +1,11 @@
-a(href=url, target='_blank')
-    i.fa(class=iconClass)
-    =name
-span.remove.js-remove ×
+.track-image-container
+    img.thumbnail(src=imageUrl)
+.track-infos
+    a(href=url, target='_blank')
+        =name
+    span.remove.js-remove ×
+    .track-info
+        | Posted 
+        span.created-at= created + ' '
+        | from 
+        span(class="provider " + provider)= provider

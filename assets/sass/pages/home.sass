@@ -1,23 +1,17 @@
 @import "../utils/common"
 @import "../atoms/track"
 @import "../atoms/button"
-@import "../atoms/profile"
+@import "../atoms/top_bar"
+@import "../molecules/input-button"
 
-.header
-  background: #849DCA
-  height: 60px
-  h2
-    margin: 0
-    display: inline-block
-    width: 10%
-    line-height: 60px
-    text-align: center
-    color: #FFFFFF
-
-.url-input
-  text-align: center
-  input
-    margin: 10px
-    border: 1px #aaa solid
-    padding: 10px 15px
-    width: 40%
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  .dn
+    display: none !important
+  .content
+    width: 100%
+    margin-top: 30px
+  body
+    font-size: 2.2em
+  .header
+    width: 100%
+    left: 0

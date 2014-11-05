@@ -2,7 +2,7 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   template: require '../templates/url_form.jade'
 
-  className: 'url-input'
+  className: 'url-input input-button'
 
   tagName: 'form'
 
@@ -13,13 +13,24 @@ module.exports = Backbone.Marionette.ItemView.extend
   events:
     'submit': 'submit'
 
+  initialize: (opts) ->
+    @vent = opts.vent
+    @vent.on 'track:added', _.bind(@slideUp, @)
+
   submit: (evt) ->
     evt.preventDefault()
     evt.stopPropagation()
     url = @ui.input.val()
+    @ui.input.val("")
     @createModel url
 
   createModel: (url) ->
-    @collection.create
-      url: url
-    , wait: true
+    @vent.trigger 'track:post', url
+
+  onRender: ->
+    $('.js-add-track').click (evt) =>
+      @$el.slideToggle(200)
+      @ui.input.focus()
+
+  slideUp: ->
+    @$el.slideUp(200)

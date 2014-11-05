@@ -19,6 +19,7 @@ exports.tracks = {
                 throw new Error(err);
             } else {
                 data.userId = req.params.user_id;
+                data.created = Date.now();
                 Track.create(data, function (err, track) {
                     if (err) {
                         return res.send(500, err);

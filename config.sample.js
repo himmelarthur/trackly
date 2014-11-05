@@ -1,5 +1,5 @@
 module.exports = {
-
+    env: '',
     mongo: {
         url: 'mongodb://localhost/trackly'
     },
