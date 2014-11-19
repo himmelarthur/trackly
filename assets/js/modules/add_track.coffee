@@ -7,6 +7,7 @@ module.exports = Backbone.Marionette.Module.extend
   onStart: (options) ->
     @form = new Form
       vent: @vent
+    @vent.on 'input:collapse', @display, @
 
   display: (region) ->
     region.show(@form)
