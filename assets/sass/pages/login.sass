@@ -1,28 +1,49 @@
 @import "../utils/common"
 @import "../atoms/button"
 
-h1
-  margin: 0
+body
+  overflow: hidden
 
 .login
-  float: left
   width: 100%
-  height: 100%
-  padding-top: 15%
-  border-left: 1px #aaa solid
+  padding: 10% 0 5% 0
   text-align: center
+  background: #e74c3c
 
   .title
-    width: 50%
-    margin: auto
-    padding-bottom: 10px
-    border-bottom: 1px #aaa solid
+    margin: 0
+    font-size: 4em
+    color: #ffffff
+    text-transform: uppercase
+    text-align: center
+    padding-left: 50px
+    letter-spacing: 50px
+    padding-bottom: 15px
     font-weight: lighter
-    font-size: 5em
-    color: #333
 
   i
     margin-right: 5px
 
-  a
-    margin-top: 20px
+.bottom
+  height: 100%
+
+  ul
+    width: 80%
+    margin: 0 auto
+    padding: 0
+    display: table
+    border-left: 1px #ddd solid
+    list-style-type: none
+
+    li
+      display: table-cell
+      width: 33.3%
+      padding: 50px 30px
+      text-align: center
+      border-right: 1px #ddd solid
+      min-height: 200px
+      font-weight: bold
+      i
+        display: block
+        font-size: 4em
+        padding-bottom: 20px
