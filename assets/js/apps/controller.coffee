@@ -9,10 +9,6 @@ module.exports = Backbone.Marionette.Controller.extend
     @vent.on 'track:added', @addTrack,
       user: @models.user
 
-  # ROUTES
-  userRoute: (uid)->
-    console.log uid
-
   # EVENTS
   postTrack: (url) ->
     @user.postTrack url, (data) =>

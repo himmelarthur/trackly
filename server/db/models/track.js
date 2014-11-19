@@ -49,7 +49,6 @@ Track.buildYoutube = function (url, id, cb) {
     }, function (err, data) {
         if (err) return cb(err, null);
         var result = data.items[0];
-        console.log(result.snippet)
         cb(null, {
             name: result.snippet.title,
             url: url,
@@ -73,7 +72,6 @@ Track.buildSoundcloud = function (url, cb) {
     request(requestURL, function (err, res, body) {
         if (err) return cb(err, null);
         body = JSON.parse(body);
-        console.log(body);
         cb(null, {
             name: body.title,
             url: url,

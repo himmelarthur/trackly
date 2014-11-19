@@ -5,7 +5,6 @@ window.Backbone = require('backbone')
 Marionette = require('marionette')
 
 # Applications & Modules
-Router = require './router.coffee'
 Controller = require './controller.coffee'
 AddTrack = require '../modules/add_track.coffee'
 
@@ -36,13 +35,10 @@ controller = new Controller
   vent: Trackly.vent
   models:
     user: user
-router = new Router
-  controller: controller
 
 Trackly.addInitializer (opts) ->
   Trackly.AddTrack.display(Trackly.form)
   Trackly.list.show list
 
 $ ->
-  Backbone.history.start()
   Trackly.start()
