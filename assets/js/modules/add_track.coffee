@@ -7,7 +7,18 @@ module.exports = Backbone.Marionette.Module.extend
   onStart: (options) ->
     @form = new Form
       vent: @vent
-    @vent.on 'input:collapse', @display, @
+    @vent.on 'track:added', @resetForm, @
+    @vent.on 'track:error', (error) =>
+      if error.responseJSON and error.responseJSON.error is 'duplicate'
+        @resetForm()
+      else
+        @showError()
 
   display: (region) ->
     region.show(@form)
+
+  resetForm: ->
+    @form.reset()
+
+  showError: ->
+    @form.showError()

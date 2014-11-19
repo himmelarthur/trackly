@@ -12,17 +12,30 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   events:
     'submit': 'submit'
+    'keyup': '_onKeyUp'
 
   initialize: (opts) ->
     @vent = opts.vent
     @vent.on 'track:added', _.bind(@slideUp, @)
 
+  _onKeyUp: (evt) ->
+    if evt.keyCode is 91
+      @submit()
+
   submit: (evt) ->
-    evt.preventDefault()
-    evt.stopPropagation()
+    if evt
+      evt.preventDefault()
+      evt.stopPropagation()
     url = @ui.input.val()
-    @ui.input.val("")
-    @createModel url
+    if url
+      @disable()
+      @createModel url
+
+  disable: ->
+    @ui.input.attr('disabled', on)
+
+  enable: ->
+    @ui.input.attr('disabled', off)
 
   createModel: (url) ->
     @vent.trigger 'track:post', url
@@ -34,3 +47,13 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   slideUp: ->
     @$el.slideUp(200)
+
+  showError: ->
+    @$el.addClass 'error'
+    @enable()
+    @ui.input.select()
+
+  reset: ->
+    @ui.input.val('')
+    @enable()
+    @$el.removeClass 'error'

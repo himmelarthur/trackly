@@ -1,6 +1,11 @@
 module.exports = Backbone.Model.extend
 
-  postTrack: (url, cb) ->
+  postTrack: (url, successCallback, errorCallback) ->
     api = '/api/user/%uid%/tracks'.replace '%uid%', @.get '_id'
-    $.post api, url: url, (data) ->
-      cb(data)
+    $.ajax
+        type: 'POST'
+        url: api
+        data:
+            url: url
+        success: successCallback
+        error: errorCallback

@@ -16,13 +16,18 @@ exports.tracks = {
     post: function (req, res) {
         Track.build(req.body.url, function(err, data) {
             if (err) {
-                throw new Error(err);
+                return res.send(500, err);
             } else {
                 data.userId = req.params.user_id;
                 data.created = Date.now();
                 Track.create(data, function (err, track) {
                     if (err) {
-                        return res.send(500, err);
+                        if (err.code === 11000) {
+                            // Duplicate
+                            return res.send(500, {
+                                error: "duplicate"
+                            });
+                        }
                     }
                     res.json(track);
                 });

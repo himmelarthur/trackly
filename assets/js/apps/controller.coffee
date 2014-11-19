@@ -17,6 +17,8 @@ module.exports = Backbone.Marionette.Controller.extend
   postTrack: (url) ->
     @user.postTrack url, (data) =>
       @vent.trigger 'track:added', data
+    , (error) =>
+      @vent.trigger 'track:error', error
 
   addTrack: (track) ->
     @user.tracks.add track
