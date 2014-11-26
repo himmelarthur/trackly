@@ -20,7 +20,8 @@ trackSchema.index({
     userId: 1
 }).index({
     provider: 1,
-    providerId: 1
+    providerId: 1,
+    userId: 1
 }, {
     unique: true
 });
