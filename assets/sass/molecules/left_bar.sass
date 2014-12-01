@@ -4,6 +4,7 @@
   background: #423F3F
   height: 100%
   color: #fff
+  z-index: 100
   h1
     margin: 0
     color: white
@@ -31,6 +32,7 @@
       vertical-align: middle
       font-weight: bold
   .add-track
+    position: relative
     button
       width: 50%
       margin: 10px auto
@@ -59,3 +61,33 @@
       cursor: pointer
       &:hover
         background: #5E504E
+
+.track-form
+  position: fixed
+  top: 30%
+  left: 30%
+  z-index: 90
+  width: 40%
+  background: #ECF0F1
+  padding: 20px 30px 30px 30px
+  border-radius: 7px
+  transition: .4s ease-out
+  border: 1px #aaa solid
+  box-shadow: #888 0px 5px 10px 0px
+  input
+    width: 100%
+  i
+    display: none
+    position: absolute
+    top: 60px
+    right: 10px
+    color: rgb(231, 76, 60)
+  p
+    margin: 0
+    text-align: left
+    padding-bottom: 10px
+  &.hidden
+    top: -500px
+  .url-input.error
+    i
+      display: inline-block

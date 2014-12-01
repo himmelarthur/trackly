@@ -16,7 +16,6 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   initialize: (opts) ->
     @vent = opts.vent
-    @vent.on 'track:added', _.bind(@slideUp, @)
 
   _onKeyUp: (evt) ->
     if evt.keyCode is 91
@@ -40,20 +39,13 @@ module.exports = Backbone.Marionette.ItemView.extend
   createModel: (url) ->
     @vent.trigger 'track:post', url
 
-  onRender: ->
-    $('.js-add-track').click (evt) =>
-      @$el.slideToggle(200)
-      @ui.input.focus()
-
-  slideUp: ->
-    @$el.slideUp(200)
-
   showError: ->
     @$el.addClass 'error'
     @enable()
     @ui.input.select()
 
   reset: ->
+    @ui.input.focus()
     @ui.input.val('')
     @enable()
     @$el.removeClass 'error'

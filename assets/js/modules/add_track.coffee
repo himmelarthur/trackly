@@ -9,7 +9,7 @@ module.exports = Backbone.Marionette.Module.extend
     @form = new Form
       vent: @vent
     $('.js-toggle-submit').click =>
-      @display()
+      @resetForm()
     @vent.on 'track:added', @resetForm, @
     @vent.on 'track:error', (error) =>
       if error.responseJSON and error.responseJSON.error is 'duplicate'
@@ -22,6 +22,7 @@ module.exports = Backbone.Marionette.Module.extend
 
   resetForm: ->
     @form.reset()
+    @_region.$el.toggleClass('hidden')
 
   showError: ->
     @form.showError()
