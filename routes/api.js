@@ -35,6 +35,15 @@ exports.tracks = {
         });
     },
 
+    put: function (req, res) {
+        Track.findByIdAndUpdate(req.params.track_id, req.body, function (err, track) {
+            if (err) {
+                return res.send(500, err);
+            }
+            res.send(200);
+        });
+    },
+
     delete: function (req, res) {
         Track.findById(req.params.track_id, function (err, track) {
             if (err) {
@@ -43,6 +52,6 @@ exports.tracks = {
             track.remove();
             res.send(200);
         });
-    }
+    },
 
 };

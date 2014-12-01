@@ -6,9 +6,11 @@ module.exports = Backbone.Marionette.ItemView.extend
 
   ui:
     removeButton: '.js-remove'
+    archiveButton: '.js-archive'
 
   events:
     'click @ui.removeButton': 'removeModel'
+    'click @ui.archiveButton': 'archive'
 
   modelEvents:
     change: 'render'
@@ -23,3 +25,6 @@ module.exports = Backbone.Marionette.ItemView.extend
   serializeData: ->
     _.extend @model.toJSON(),
       created: moment(@model.get "created").fromNow()
+
+  archive: ->
+    @model.archive()

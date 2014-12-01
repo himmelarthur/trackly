@@ -7,6 +7,8 @@ module.exports = function (router) {
 
     router.post('/api/user/:user_id/tracks', apiAuth, apiRoutes.tracks.post);
 
+    router.put('/api/user/:user_id/tracks/:track_id', apiAuth, apiRoutes.tracks.put);
+
     router.delete('/api/user/:user_id/tracks/:track_id', apiAuth, apiRoutes.tracks.delete);
 
 };

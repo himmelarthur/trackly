@@ -1,4 +1,6 @@
-module.exports = Backbone.Marionette.AppRouter.extend
+Marionette = require('marionette')
+module.exports = Marionette.AppRouter.extend
 
   appRoutes:
-    "ly/:user_id": "userRoute"
+    '': 'home'
+    'archived': 'archived'

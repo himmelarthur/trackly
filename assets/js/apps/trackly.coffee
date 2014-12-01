@@ -6,6 +6,7 @@ Marionette = require('marionette')
 
 # Applications & Modules
 Controller = require './controller.coffee'
+Router = require './router.coffee'
 AddTrack = require '../modules/add_track.coffee'
 
 window.Trackly = Trackly = new Marionette.Application()
@@ -26,19 +27,22 @@ tracks = new Tracks(expose.tracks)
 
 user.tracks = tracks
 
-# Views
-List = require '../views/list.coffee'
-list = new List
-  collection: tracks
-
 controller = new Controller
   vent: Trackly.vent
   models:
     user: user
+  regions:
+      trackForm: Trackly.trackForm
+      list: Trackly.list
+  collections:
+    tracks: tracks
+
+router = new Router
+  controller: controller
 
 Trackly.addInitializer (opts) ->
   Trackly.AddTrack.display(Trackly.trackForm)
-  Trackly.list.show list
 
 $ ->
   Trackly.start()
+  Backbone.history.start()
