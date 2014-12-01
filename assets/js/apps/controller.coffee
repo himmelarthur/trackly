@@ -13,8 +13,7 @@ module.exports = Backbone.Marionette.Controller.extend
     @vent.on 'track:post', @postTrack,
       user: @models.user
       vent: @vent
-    @vent.on 'track:added', @addTrack,
-      user: @models.user
+    @vent.on 'track:added', @addTrack, @
     @collections.tracks.on 'change:archived', (track) =>
       @removeTrackFromList(track)
 
@@ -26,7 +25,8 @@ module.exports = Backbone.Marionette.Controller.extend
       @vent.trigger 'track:error', error
 
   addTrack: (track) ->
-    @user.tracks.add track
+    @collections.tracks.add track
+    @views.list.collection.add track
 
   # ROUTES
   home: ->
