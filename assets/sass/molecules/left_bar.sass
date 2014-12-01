@@ -1,7 +1,7 @@
 .left-bar
   position: fixed
   width: 230px
-  background: #413837
+  background: #423F3F
   height: 100%
   color: #fff
   h1
@@ -12,13 +12,14 @@
     font-weight: lighter
     letter-spacing: 10px
     padding: 10px 0
-    border-bottom: 1px #d3dede solid
-    background: #5E504E
+    border-bottom: 1px #8C8887 solid
   .left-profile
+    position: absolute
+    bottom: 0
     display: table
     width: 100%
     padding: 10px 10%
-    border-bottom: 1px #d3dede solid
+    border-top: 1px #8C8887 solid
     img
       width: 50px
       display: table-cell
@@ -29,13 +30,32 @@
       display: table-cell
       vertical-align: middle
       font-weight: bold
+  .add-track
+    button
+      width: 50%
+      margin: 10px auto
+      display: block
+      outline: none
+      background: rgb(231, 76, 60)
+      color: white
+      font-weight: bold
+      border-radius: 5px
+      border: rgb(158, 44, 32) solid
+      border-width: 1px 1px 3px 1px
+      padding: 10px 0px
+      font-size: 0.9em
+      cursor: pointer
+      &:active
+        border-bottom-width: 1px
+        border-top-width: 3px
   ul
     margin: 0
     list-style: none
     padding: 0
+    border-top: 1px #8C8887 solid
     li
       padding: 15px 20px
-      border-bottom: 1px #d3dede solid
+      border-bottom: 1px #8C8887 solid
       cursor: pointer
       &:hover
         background: #5E504E
