@@ -9,10 +9,12 @@ module.exports = Backbone.Marionette.ItemView.extend
   ui:
     input: 'input'
     button: 'button'
+    close: '.js-close'
 
   events:
     'submit': 'submit'
     'keyup': '_onKeyUp'
+    'click @ui.close': 'close'
 
   initialize: (opts) ->
     @vent = opts.vent
@@ -20,6 +22,8 @@ module.exports = Backbone.Marionette.ItemView.extend
   _onKeyUp: (evt) ->
     if evt.keyCode is 91
       @submit()
+    else if evt.keyCode is 27
+      @vent.trigger "form:up"
 
   submit: (evt) ->
     if evt
@@ -49,3 +53,6 @@ module.exports = Backbone.Marionette.ItemView.extend
     @ui.input.val('')
     @enable()
     @$el.removeClass 'error'
+
+  close: ->
+    @vent.trigger 'form:up'
