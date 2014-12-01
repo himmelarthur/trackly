@@ -3,7 +3,9 @@
 .track-infos
     a(href=url, target='_blank')
         =name
-    span.remove.js-remove ×
+    .track-actions
+        span.fa.fa-check.archive.js-archive
+        span.fa.fa-times.remove.js-remove
     .track-info
         | Posted 
         span.created-at= created + ' '
