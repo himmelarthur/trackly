@@ -8,11 +8,11 @@ Marionette = require('marionette')
 Controller = require './controller.coffee'
 AddTrack = require '../modules/add_track.coffee'
 
-Trackly = new Marionette.Application()
+window.Trackly = Trackly = new Marionette.Application()
 Trackly.module('AddTrack', AddTrack);
 
 Trackly.addRegions
-    form: '#form'
+    trackForm: '#track-form'
     list: '#list'
 
 # Models
@@ -37,7 +37,7 @@ controller = new Controller
     user: user
 
 Trackly.addInitializer (opts) ->
-  Trackly.AddTrack.display(Trackly.form)
+  Trackly.AddTrack.display(Trackly.trackForm)
   Trackly.list.show list
 
 $ ->
