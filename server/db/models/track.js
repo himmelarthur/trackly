@@ -13,7 +13,8 @@ var trackSchema = new Schema({
     name: String,
     url: String,
     imageUrl: String,
-    created: {type: Date}
+    created: {type: Date},
+    archived: {type: Boolean}
 });
 
 trackSchema.index({
@@ -24,6 +25,9 @@ trackSchema.index({
     userId: 1
 }, {
     unique: true
+}).index({
+    userId: 1,
+    archived: 1
 });
 
 var Track = mongoose.model('Track', trackSchema);
