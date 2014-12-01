@@ -13,7 +13,8 @@ var express = require('express')
   , path = require('path')
   , passport = require('./server/auth/passport')
   , config = require('./config')
-  , router = require('./server/router');
+  , router = require('./server/router')
+  , MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
@@ -29,7 +30,10 @@ app.use(bodyParser.urlencoded());
 app.use(session({
     secret: config.session.secret,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({
+      db: config.mongo.dbName
+    })
 }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -1,7 +1,8 @@
 module.exports = {
     env: '',
     mongo: {
-        url: 'mongodb://localhost/trackly'
+        url: 'mongodb://localhost/trackly',
+        dbName: 'trackly'
     },
     facebook: {
         appID: -1,
