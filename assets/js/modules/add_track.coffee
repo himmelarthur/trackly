@@ -9,8 +9,9 @@ module.exports = Backbone.Marionette.Module.extend
     @form = new Form
       vent: @vent
 
-    $('.js-toggle-submit').click =>
+    $('body').on('click', '.js-toggle-submit', =>
       @resetForm()
+    )
 
     @vent.on 'form:up', @close, @
     @vent.on 'track:added', @resetForm, @
