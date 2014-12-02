@@ -7,14 +7,22 @@
 @import "../molecules/input-button"
 @import "../molecules/no_track"
 
+.desktop-dn
+  display: none !important
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px)
+  .desktop-dn
+    display: block !important
   .dn
     display: none !important
   .content
     width: 100%
-    margin-top: 30px
+    margin-left: 0
+    padding: 3% 3% 0 18%
   body
     font-size: 2.2em
   .header
     width: 100%
     left: 0
+  .left-bar
+    width: 15%

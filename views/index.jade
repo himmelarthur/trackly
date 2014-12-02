@@ -4,9 +4,9 @@ block css
   link(rel='stylesheet', href='/stylesheets/home.css')
 
 block content
-  .left-bar
+  .left-bar.dn
     h1 Trackly
-    .left-profile
+    .left-profile.dn
       img(src="http://graph.facebook.com/1106072612/picture?width=100")
       p.left-profile__name Arthur Himmel
     .add-track
@@ -14,13 +14,29 @@ block content
 
     ul.left-menu
       li
-        a(href="#") 
+        a(href="#")
           i.fa.fa-home
           |Home
       li
         a(href="#archived")
           i.fa.fa-check
           |Archived
+
+  .left-bar.left-bar--responsive.desktop-dn
+    h1 t
+    .left-profile
+      img(src="http://graph.facebook.com/1106072612/picture?width=100")
+    .add-track
+      button.button.js-add-track.js-toggle-submit +
+
+    ul.left-menu
+      li
+        a(href="#")
+          i.fa.fa-home
+      li
+        a(href="#archived")
+          i.fa.fa-check
+
   .content
     #list.track-list
   #track-form.track-form.hidden
